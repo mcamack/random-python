@@ -3,5 +3,9 @@ key1:
     - nochange
     - addinmiddle
     - move
+  newkey: pppp
+  newkey2:
+    - qqqq
 key2:
   - nochange
+  - add2
