@@ -1,7 +1,8 @@
-key1:
-  names:
+r:
+  key1:
+    names:
+      - nochange
+      - move
+  key2:
     - nochange
-    - move
-key2:
-  - nochange
-  - delete
+    - delete

@@ -1,11 +1,11 @@
-key1:
-  names:
+r:
+  key1:
+    names:
+      - nochange
+      - addinmiddle
+      - move
+    newkey: pppp
+  key2:
     - nochange
-    - addinmiddle
-    - move
-  newkey: pppp
-  newkey2:
-    - qqqq
-key2:
-  - nochange
-  - add2
+    - add2
+    - add3
