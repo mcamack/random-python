@@ -1,0 +1,7 @@
+key1:
+  names:
+    - nochange
+    - addinmiddle
+    - move
+key2:
+  - nochange

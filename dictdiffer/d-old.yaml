@@ -1,0 +1,7 @@
+key1:
+  names:
+    - nochange
+    - move
+key2:
+  - nochange
+  - delete
