@@ -1,0 +1,7 @@
+key1:
+  names:
+    - matt
+    - bridget
+key2:
+  - value1
+  - value2
