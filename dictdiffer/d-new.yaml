@@ -1,5 +1,8 @@
 v:
   role: name
+  env:
+    - wood1
+    - wood2
   generate:
     s1:
       ns1:
