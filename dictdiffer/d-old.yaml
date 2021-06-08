@@ -1,8 +1,7 @@
-r:
-  key1:
-    names:
-      - nochange
-      - move
-  key2:
-    - nochange
-    - delete
+v:
+  role: name
+  generate:
+    s1:
+      ns1:
+        - val1
+        - val2

@@ -27,7 +27,7 @@ print(f"changes: {changes}")
 print(f"adds: {adds}")
 print(f"removes: {removes}")
 
-print("\nChange parsing")
+print("\nProcess Changes")
 actual_adds=[]
 actual_dels=[]
 kv_adds= {}
@@ -75,7 +75,7 @@ for change in changes:
 
 
 
-print("\n\ncheck if an add is actually a move")
+print("\n\nProcess Adds")
 for add in adds:
     print(f"add[0]: {add[0]}")
     print(f"add[1]: {add[1]}")
@@ -86,6 +86,20 @@ for add in adds:
             if type(item[1]) == list:
                 for j in item[1]:
                     kv_adds.setdefault(add[0] + "." + item[0], []).append(j)
+            elif type(item[1]) == dict: #new subkey added
+                key = add[0] + "." + item[0]
+                val = item[1] #dict
+                while type(val) == dict:
+                    print(f"####val: {val}")
+                    key += "."
+                    key += list(val.keys())[0]
+                    val = val[list(val.keys())[0]]
+
+                if type(val) == list:
+                    for k in val:
+                        kv_adds.setdefault(key, []).append(k)
+                else:
+                    kv_adds.setdefault(key, []).append(val)
             else:
                 kv_adds.setdefault(add[0]+"."+item[0], []).append(item[1])
         else:
@@ -103,6 +117,7 @@ for add in adds:
                 actual_adds.append(item[1])
                 kv_adds.setdefault(add[0], []).append(item[1])
 
+print("\n\nProcess Removes")
 for remove in removes:
     print(f"remove[0]: {remove[0]}")
     print(f"remove[1]: {remove[1]}")
@@ -121,17 +136,28 @@ for remove in removes:
             kv_deletes.setdefault(remove[0], []).append(item[1])
 
 print("\n\n#### OUT ####")
-# print(f"kv_deletes: {kv_deletes}")
-# print(f"kv_adds: {kv_adds}")
+print(f"kv_deletes: {kv_deletes}")
+print(f"kv_adds: {kv_adds}")
 
+
+# Parse the output keys into paths
+path = "v.generate"
+ret = {"adds": [], "deletes": []}
 for k,v in kv_deletes.items():
-    k = k.replace(".", "/")
-    for i in v:
-        print(f"delete {k}/{i}")
+    if path in k:
+        k = k.replace(path + ".", "")
+        k = k.replace(".", "/")
+        for i in v:
+            print(f"delete {k}/{i}")
+            ret["deletes"].append({"path": k, "key": i})
 
 for k,v in kv_adds.items():
-    k = k.replace(".", "/")
-    for i in v:
-        print(f"create {k}/{i}")
+    if path in k:
+        k = k.replace(path + ".", "")
+        k = k.replace(".", "/")
+        for i in v:
+            print(f"add {k}/{i}")
+            ret["adds"].append({"path": k, "key": i})
 
+print(f"\nret:\n{ret}")
 # Look for new keys
