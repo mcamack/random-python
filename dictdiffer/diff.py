@@ -154,15 +154,15 @@ print(f"kv_adds: {kv_adds}")
 ret = {"adds": [], "deletes": []}
 for k, v in kv_deletes.items():
     k = k.replace(".", "/")
-    for i in v:
-        print(f"delete {k}/{i}")
-        ret["deletes"].append({"path": k, "key": i})
+    # for i in v:
+    #     print(f"delete {k}/{i}")
+    ret["deletes"].append({"path": k, "key": v})
 
 for k, v in kv_adds.items():
     k = k.replace(".", "/")
-    for i in v:
-        print(f"add {k}/{i}")
-        ret["adds"].append({"path": k, "key": i})
+    # for i in v:
+    #     print(f"add {k}/{i}")
+    ret["adds"].append({"path": k, "key": v})
 
 print(f"\nret:\n{ret}")
 # Look for new keys
