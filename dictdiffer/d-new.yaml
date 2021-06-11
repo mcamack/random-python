@@ -6,15 +6,9 @@ v:
   generate:
     s1:
       ns1:
-        - val1
         - val2
         - val3
-      ns2:
-        - valA
-    s2:
-      ns3:
-        - blah1
-        - blah2
-    s3:
-      ns4:
-        x5: blah3
+      ns2: blah
+#        -  valA: ff
+#           fds: fds
+
